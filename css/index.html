@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+
+    <label for="valor">Digite um valor:</label>
+    <input id="valor" type="text"><br>
+    <button id="btn-salvar">Salvar</button>
+
+    <script>
+        let dados = [];
+
+        let input = document.getElementById("valor");
+        let btnSalvar = document.getElementById("btn-salvar");
+
+        btnSalvar.addEventListener('click', () => {
+
+            let dadosStore = localStorage.getItem("dados");
+
+            if(dadosStore){
+                dados = JSON.parse(dadosStore);
+            }
+
+            if(!input.value) return;
+
+            dados.push(input.value);
+
+            localStorage.setItem("dados", JSON.stringify(dados));
+            input.value = "";
+
+            setTimeout(() => {
+                alert("Dados salvos com sucesso!!!")
+            },1000)
+
+
+        })
+
+    </script>
+    
+   
+</body>
+</html>
